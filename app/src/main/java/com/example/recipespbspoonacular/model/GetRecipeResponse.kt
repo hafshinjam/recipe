@@ -1,6 +1,7 @@
 package com.example.recipespbspoonacular.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class GetRecipeResponse(
 
@@ -67,6 +68,7 @@ data class GetRecipeResponse(
 	@field:SerializedName("cookingMinutes")
 	val cookingMinutes: Int? = null,
 
+
 	@field:SerializedName("image")
 	val image: String? = null,
 
@@ -114,7 +116,7 @@ data class GetRecipeResponse(
 
 	@field:SerializedName("spoonacularSourceUrl")
 	val spoonacularSourceUrl: String? = null
-)
+) : Serializable
 
 data class EquipmentItem(
 

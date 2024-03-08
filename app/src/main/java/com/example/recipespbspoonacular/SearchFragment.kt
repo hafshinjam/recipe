@@ -18,6 +18,7 @@ class SearchFragment : Fragment() {
     lateinit var binding: FragmentSearchBinding
     private val viewModel: SearchViewModel by viewModels {
         SearchViewModel.Factory
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

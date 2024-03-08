@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+<data>
+    <variable
+        name="recipe"
+        type="com.example.recipespbspoonacular.model.GetRecipeResponse" />
+</data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,20 +16,24 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:context=".RecipeDetailFragment">
 
             <ImageView
                 android:id="@+id/recipe_detail_image_iv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="41dp"
+                app:imageUrl="@{recipe.image}"
+                app:layout_constraintBottom_toTopOf="@+id/recipe_detail_detail_tv"
+                app:layout_constraintDimensionRatio=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_recipe_foreground" />
+                tools:srcCompat="@mipmap/ic_recipe_foreground" />
 
             <TextView
                 android:id="@+id/recipe_detail_name_tv"
@@ -34,17 +42,18 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@id/recipe_detail_detai_tv"
+                android:text="@{recipe.title}"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/recipe_detail_detail_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_detail_image_iv" />
 
             <TextView
-                android:id="@+id/recipe_detail_detai_tv"
+                android:id="@+id/recipe_detail_detail_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@{@string/cooking_duration(recipe.cookingMinutes)}"
                 app:layout_constraintBottom_toTopOf="@id/recipe_detail_ingr_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +63,7 @@
                 android:id="@+id/recipe_detail_ingr_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@string/cooking_duration"
                 app:layout_constraintBottom_toTopOf="@+id/recipe_detail_instr_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +73,7 @@
                 android:id="@+id/recipe_detail_instr_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@{recipe.instructions}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

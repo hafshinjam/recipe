@@ -2,6 +2,7 @@ package com.example.recipespbspoonacular.adapter.recyclerView
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
@@ -22,13 +23,13 @@ class RecipeSearchRecyclerAdapter(val viewModel: RecipeDetailViewModel) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindViews(getItem(position), viewModel)
+        holder.bindViews(getItem(position), viewModel,holder.itemView)
     }
 
     class ViewHolder private constructor(private var binding: RecipeSearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViews(recipe: Recipe, viewModel: RecipeDetailViewModel) {
+        fun bindViews(recipe: Recipe, viewModel: RecipeDetailViewModel,view: View) {
             if (recipe is ResultsItem) {
                 recipe.titleName = recipe.title
                 recipe.imageAddress = recipe.image
@@ -39,14 +40,14 @@ class RecipeSearchRecyclerAdapter(val viewModel: RecipeDetailViewModel) :
                 recipe.idNumber = recipe.id
             }
             Log.i("bindViews", "bindViews: recipe" + recipe)
-            binding.root.setOnClickListener {
-                viewModel.getRecipe(recipe.idNumber, true)
+            view.setOnClickListener {
+                viewModel.getRecipe(recipe.idNumber, true,view)
             }
             binding.recipe = recipe
             binding.executePendingBindings()
-            binding.recipeItemIv.setOnClickListener {
-                Toast.makeText(binding.root.context, recipe.titleName, LENGTH_LONG).show()
-            }
+//            binding.recipeItemIv.setOnClickListener {
+//                Toast.makeText(binding.root.context, recipe.titleName, LENGTH_LONG).show()
+//            }
         }
 
         companion object {
